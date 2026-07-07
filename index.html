@@ -21,36 +21,74 @@ color:#333;
 line-height:1.8;
 }
 
-.top-banner{
-position:relative;
+/* 首屏浏览器相框容器 */
+.browser-frame-wrap{
 width:100%;
-height:75vh;
-min-height:500px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 20px;
+}
+
+.browser-frame{
+width:100%;
+max-width:1100px;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+position:relative;
+transition:opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* 浏览器顶部栏（模拟窗口标题栏） */
+.browser-header{
+background:#ffffff;
+padding:12px 16px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#ddd;
+}
+
+.browser-header-text{
+margin-left:12px;
+font-size:13px;
+color:#777;
+}
+
+/* 横幅大图区域 */
+.top-banner{
+width:100%;
+height:70vh;
+min-height:450px;
 background-image:url('images/banner.jpg');
 background-size:cover;
 background-position:center;
-transition:opacity 0.4s ease, transform 0.4s ease;
 display:flex;
 align-items:flex-end;
-padding:40px 25px;
+padding:40px 35px;
+position:relative;
 }
 
-.top-banner-overlay{
+.banner-overlay{
 position:absolute;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.65));
-z-index:1;
+background:linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
 }
 
-.top-banner-content{
+.banner-content{
 position:relative;
 z-index:2;
-max-width:900px;
-width:100%;
-margin:0 auto;
 }
 
 .top-banner h1{
@@ -81,10 +119,11 @@ transition:0.2s;
 opacity:0.85;
 }
 
+/* 下方内容区域 */
 .page-content{
 max-width:900px;
 margin:auto;
-padding:50px 25px;
+padding:60px 25px;
 }
 
 section{
@@ -153,10 +192,12 @@ padding:25px;
 }
 
 @media(max-width:768px){
+.browser-frame-wrap{
+padding:20px 10px;
+}
 .top-banner{
 padding:30px 20px;
 }
-
 .page-content{
 padding:30px 20px;
 }
@@ -168,15 +209,29 @@ padding:30px 20px;
 
 <body>
 
-<div class="top-banner" id="topBanner">
-<div class="top-banner-overlay"></div>
-<div class="top-banner-content">
-<h1>VITAL JOY</h1>
-<p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
-<a class="button" href="#">了解更多</a>
-</div>
+<!-- 带浏览器相框的首屏 -->
+<div class="browser-frame-wrap">
+    <div class="browser-frame" id="browserBox">
+        <!-- 模拟浏览器顶部三个小圆点 -->
+        <div class="browser-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <div class="browser-header-text">Vital Joy</div>
+        </div>
+
+        <div class="top-banner">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <h1>VITAL JOY</h1>
+                <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
+                <a class="button" href="#">了解更多</a>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- 下方正文内容 -->
 <div class="page-content">
 
 <section>
@@ -251,20 +306,19 @@ padding:30px 20px;
 </footer>
 
 <script>
-const topBanner = document.getElementById('topBanner');
+const browserBox = document.getElementById('browserBox');
 
 window.addEventListener('scroll', () => {
 const scrollY = window.scrollY;
-const bannerHeight = topBanner.offsetHeight;
+const boxHeight = browserBox.offsetHeight;
 
-if(scrollY < bannerHeight){
-const opacity = 1 - (scrollY / bannerHeight) * 1.3;
-const scale = 1 - (scrollY / bannerHeight) * 0.06;
-topBanner.style.opacity = Math.max(opacity, 0);
-topBanner.style.transform = `scale(${scale})`;
+if(scrollY < boxHeight){
+let opacity = 1 - (scrollY / boxHeight) * 1.2;
+let scale = 1 - (scrollY / boxHeight) * 0.05;
+browserBox.style.opacity = Math.max(opacity, 0);
+browserBox.style.transform = `scale(${scale})`;
 }else{
-topBanner.style.opacity = 0;
-topBanner.style.transform = 'scale(0.94)';
+browserBox.style.opacity = 0;
 }
 });
 </script>
