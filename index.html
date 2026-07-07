@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Vital Joy</title>
 
@@ -15,6 +15,7 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
+/* 修复iOS全屏留白 viewport-fit=cover */
 html,body{
 width:100%;
 min-height:100%;
@@ -39,11 +40,11 @@ overflow:hidden;
 z-index:-1;
 }
 
-/* 背景图：等比例放大铺满，裁切多余部分，不拉伸 */
+/* 适配1200×2132竖版长图：铺满裁切、优先显示顶部 */
 .parallax-img{
 width:100%;
-/* 拉长高度，预留滚动空间，解决平板底部留白 */
-height:125vh;
+/* 拉长高度，消除底部留白，预留视差滚动空间 */
+height:135vh;
 object-fit:cover;
 object-position:center top;
 }
