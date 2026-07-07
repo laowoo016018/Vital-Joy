@@ -41,20 +41,32 @@ position:relative;
 transition:opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 浏览器顶部栏（模拟窗口标题栏） */
+/* 浏览器顶部栏 */
 .browser-header{
 background:#ffffff;
 padding:12px 16px;
 display:flex;
 align-items:center;
-gap:8px;
+gap:10px;
 }
 
+/* 四颗彩色圆点 */
 .dot{
 width:12px;
 height:12px;
 border-radius:50%;
-background:#ddd;
+}
+.dot1{
+background:#4285F4; /*蓝色*/
+}
+.dot2{
+background:#34A853; /*绿色*/
+}
+.dot3{
+background:#9C27B0; /*紫色*/
+}
+.dot4{
+background:#FBBC05; /*黄色*/
 }
 
 .browser-header-text{
@@ -212,11 +224,12 @@ padding:30px 20px;
 <!-- 带浏览器相框的首屏 -->
 <div class="browser-frame-wrap">
     <div class="browser-frame" id="browserBox">
-        <!-- 模拟浏览器顶部三个小圆点 -->
+        <!-- 四颗彩色圆点：蓝、绿、紫、黄 -->
         <div class="browser-header">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+            <span class="dot dot4"></span>
             <div class="browser-header-text">Vital Joy</div>
         </div>
 
