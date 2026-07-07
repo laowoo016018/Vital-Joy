@@ -15,7 +15,6 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
-/* 修复iOS高度bug：html、body强制铺满视口 */
 html,body{
 width:100%;
 min-height:100%;
@@ -29,7 +28,7 @@ color:#333;
 line-height:1.8;
 }
 
-/* ===== 改用img标签做固定背景，解决iOS留白 ===== */
+/* 固定背景容器 */
 .bg-container{
 position:fixed;
 top:0;
@@ -39,14 +38,17 @@ height:100vh;
 overflow:hidden;
 z-index:-1;
 }
+
+/* 背景图：等比例放大铺满，裁切多余部分，不拉伸 */
 .parallax-img{
 width:100%;
-height:120vh;
+/* 拉长高度，预留滚动空间，解决平板底部留白 */
+height:125vh;
 object-fit:cover;
 object-position:center top;
 }
 
-/* 首屏浏览器相框容器 */
+/* 浏览器窗口区域 */
 .browser-frame-wrap{
 width:100%;
 min-height:100vh;
@@ -68,7 +70,6 @@ position:relative;
 transition:opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 浏览器顶部栏 */
 .browser-header{
 background:#ffffff;
 padding:12px 16px;
@@ -77,7 +78,6 @@ align-items:center;
 gap:10px;
 }
 
-/* 四颗彩色圆点：蓝、绿、紫、黄 */
 .dot{
 width:12px;
 height:12px;
@@ -94,7 +94,6 @@ font-size:13px;
 color:#777;
 }
 
-/* 窗口内横幅区域 */
 .top-banner{
 width:100%;
 height:70vh;
@@ -150,7 +149,6 @@ transition:0.2s;
 opacity:0.85;
 }
 
-/* ===== 下方内容区：透明背景 ===== */
 .page-content{
 position:relative;
 z-index:2;
@@ -170,7 +168,6 @@ text-align:left;
 font-size:26px;
 }
 
-/* 四个特点：半透明毛玻璃小格子 */
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -184,7 +181,7 @@ border-radius:15px;
 text-align:left;
 box-shadow:0 2px 12px rgba(0,0,0,0.08);
 backdrop-filter:blur(8px);
--webkit-backdrop-filter:blur(8px); /*兼容iOS毛玻璃*/
+-webkit-backdrop-filter:blur(8px);
 }
 
 .card h3{
@@ -192,7 +189,6 @@ color:#6b8e5a;
 margin-bottom:15px;
 }
 
-/* 产品介绍卡片 */
 .product-card{
 display:flex;
 gap:30px;
@@ -232,10 +228,6 @@ backdrop-filter:blur(8px);
 -webkit-backdrop-filter:blur(8px);
 }
 
-.contact-card h2{
-margin-bottom:20px;
-}
-
 footer{
 position:relative;
 z-index:2;
@@ -263,12 +255,10 @@ padding:20px;
 
 <body>
 
-<!-- 【修复版：img标签视差背景，解决iPad底部留白】 -->
 <div class="bg-container">
     <img class="parallax-img" id="parallaxImage" src="images/body-bg.jpg" alt="">
 </div>
 
-<!-- 浏览器窗口首屏 -->
 <div class="browser-frame-wrap">
     <div class="browser-frame" id="browserBox">
         <div class="browser-header">
@@ -290,7 +280,6 @@ padding:20px;
     </div>
 </div>
 
-<!-- 下方内容区 -->
 <div class="page-content">
 
 <section>
@@ -374,7 +363,6 @@ window.addEventListener('scroll', () => {
 const scrollY = window.scrollY;
 const boxHeight = browserBox.offsetHeight;
 
-// 窗口淡出缩小
 if(scrollY < boxHeight){
 let opacity = 1 - (scrollY / boxHeight) * 1.2;
 let scale = 1 - (scrollY / boxHeight) * 0.05;
@@ -385,7 +373,6 @@ browserBox.style.opacity = 0;
 browserBox.style.transform = 'scale(0.9)';
 }
 
-// 背景图向上视差滑动（负值向上）
 const slowSpeed = scrollY * 0.28;
 parallaxImage.style.transform = `translateY(-${slowSpeed}px)`;
 });
