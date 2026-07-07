@@ -15,7 +15,6 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
-/* 修复iOS全屏留白 viewport-fit=cover */
 html,body{
 width:100%;
 min-height:100%;
@@ -29,27 +28,20 @@ color:#333;
 line-height:1.8;
 }
 
-/* 固定背景容器 */
-.bg-container{
-position:fixed;
-top:0;
-left:0;
-width:100vw;
-height:100vh;
-overflow:hidden;
-z-index:-1;
-}
-
-/* 适配1200×2132竖版长图：铺满裁切、优先显示顶部 */
-.parallax-img{
+/* ===== 页面背景图：顶部到底部完整显示 ===== */
+.page-bg{
 width:100%;
-/* 拉长高度，消除底部留白，预留视差滚动空间 */
-height:140vh;
-object-fit:cover;
-object-position:center top;
+min-height:100vh;
+height:auto;
+background-image:url('images/body-bg.jpg');
+background-size:100% 100%;
+background-position:top center;
+background-repeat:no-repeat;
+position:relative;
+z-index:1;
 }
 
-/* 浏览器窗口区域 */
+/* 首屏浏览器相框容器 */
 .browser-frame-wrap{
 width:100%;
 min-height:100vh;
@@ -71,6 +63,7 @@ position:relative;
 transition:opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* 浏览器顶部栏 */
 .browser-header{
 background:#ffffff;
 padding:12px 16px;
@@ -79,6 +72,7 @@ align-items:center;
 gap:10px;
 }
 
+/* 四颗彩色圆点：蓝、绿、紫、黄 */
 .dot{
 width:12px;
 height:12px;
@@ -95,6 +89,7 @@ font-size:13px;
 color:#777;
 }
 
+/* 窗口内横幅区域 */
 .top-banner{
 width:100%;
 height:70vh;
@@ -150,9 +145,10 @@ transition:0.2s;
 opacity:0.85;
 }
 
+/* ===== 下方内容区 ===== */
 .page-content{
 position:relative;
-z-index:2;
+z-index:3;
 max-width:900px;
 margin:0 auto;
 padding:60px 25px;
@@ -231,7 +227,7 @@ backdrop-filter:blur(8px);
 
 footer{
 position:relative;
-z-index:2;
+z-index:3;
 background:#4b3828;
 color:white;
 text-align:center;
@@ -242,9 +238,11 @@ padding:25px;
 .browser-frame-wrap{
 padding:20px 10px;
 }
+
 .page-content{
 padding:30px 20px;
 }
+
 .product-card{
 padding:20px;
 }
@@ -256,114 +254,117 @@ padding:20px;
 
 <body>
 
-<div class="bg-container">
-    <img class="parallax-img" id="parallaxImage" src="images/body-bg.jpg" alt="">
-</div>
+<!-- 【背景图：顶部到底部完整显示，不裁切】 -->
+<div class="page-bg">
 
-<div class="browser-frame-wrap">
-    <div class="browser-frame" id="browserBox">
-        <div class="browser-header">
-            <span class="dot dot1"></span>
-            <span class="dot dot2"></span>
-            <span class="dot dot3"></span>
-            <span class="dot dot4"></span>
-            <div class="browser-header-text">Vital Joy</div>
-        </div>
+    <!-- 浏览器窗口首屏 -->
+    <div class="browser-frame-wrap">
+        <div class="browser-frame" id="browserBox">
+            <div class="browser-header">
+                <span class="dot dot1"></span>
+                <span class="dot dot2"></span>
+                <span class="dot dot3"></span>
+                <span class="dot dot4"></span>
+                <div class="browser-header-text">Vital Joy</div>
+            </div>
 
-        <div class="top-banner">
-            <div class="banner-overlay"></div>
-            <div class="banner-content">
-                <h1>VITAL JOY</h1>
-                <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
-                <a class="button" href="#">了解更多</a>
+            <div class="top-banner">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>VITAL JOY</h1>
+                    <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
+                    <a class="button" href="#">了解更多</a>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- 下方内容区 -->
+    <div class="page-content">
+
+        <section>
+            <h2>为什么选择我们</h2>
+            <div class="cards">
+
+                <div class="card">
+                    <h3>🌱 天然豆腐</h3>
+                    <p>采用植物纤维制作，环保又安心。</p>
+                </div>
+
+                <div class="card">
+                    <h3>⚡ 快速结团</h3>
+                    <p>快速吸收，减少碎团。</p>
+                </div>
+
+                <div class="card">
+                    <h3>🌬️ 低粉尘</h3>
+                    <p>减少粉尘飞扬，保护猫咪呼吸。</p>
+                </div>
+
+                <div class="card">
+                    <h3>✨ 强效除臭</h3>
+                    <p>帮助保持猫砂盆清新。</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>产品介绍</h2>
+            <div class="product-card">
+
+                <img src="images/product.jpg" alt="Product">
+
+                <div>
+                    <h3>Tofu Cat Litter</h3>
+                    <p>重量：6L</p>
+                    <p>适合：
+                    <br>🐱 家庭猫咪
+                    <br>🐱 多猫家庭
+                    <br>🐱 猫舍
+                    <br>🐱 宠物寄宿中心
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>产品细节</h2>
+            <div class="product-card">
+
+                <img src="images/detail.jpg" alt="Detail">
+
+                <div>
+                    <p>天然豆腐原料<br><br>快速结团<br><br>低粉尘设计<br><br>方便清理</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>联系我们</h2>
+            <div class="contact-card">
+                <p>WhatsApp ｜ Instagram ｜ Shopee</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        © 2026 Vital Joy
+    </footer>
+
 </div>
-
-<div class="page-content">
-
-<section>
-<h2>为什么选择我们</h2>
-<div class="cards">
-
-<div class="card">
-<h3>🌱 天然豆腐</h3>
-<p>采用植物纤维制作，环保又安心。</p>
-</div>
-
-<div class="card">
-<h3>⚡ 快速结团</h3>
-<p>快速吸收，减少碎团。</p>
-</div>
-
-<div class="card">
-<h3>🌬️ 低粉尘</h3>
-<p>减少粉尘飞扬，保护猫咪呼吸。</p>
-</div>
-
-<div class="card">
-<h3>✨ 强效除臭</h3>
-<p>帮助保持猫砂盆清新。</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2>产品介绍</h2>
-<div class="product-card">
-
-<img src="images/product.jpg" alt="Product">
-
-<div>
-<h3>Tofu Cat Litter</h3>
-<p>重量：6L</p>
-<p>适合：
-<br>🐱 家庭猫咪
-<br>🐱 多猫家庭
-<br>🐱 猫舍
-<br>🐱 宠物寄宿中心
-</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2>产品细节</h2>
-<div class="product-card">
-
-<img src="images/detail.jpg" alt="Detail">
-
-<div>
-<p>天然豆腐原料<br><br>快速结团<br><br>低粉尘设计<br><br>方便清理</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2>联系我们</h2>
-<div class="contact-card">
-<p>WhatsApp ｜ Instagram ｜ Shopee</p>
-</div>
-</section>
-
-</div>
-
-<footer>
-© 2026 Vital Joy
-</footer>
 
 <script>
 const browserBox = document.getElementById('browserBox');
-const parallaxImage = document.getElementById('parallaxImage');
 
 window.addEventListener('scroll', () => {
 const scrollY = window.scrollY;
 const boxHeight = browserBox.offsetHeight;
 
+// 浏览器窗口滚动淡出缩小
 if(scrollY < boxHeight){
 let opacity = 1 - (scrollY / boxHeight) * 1.2;
 let scale = 1 - (scrollY / boxHeight) * 0.05;
@@ -373,9 +374,6 @@ browserBox.style.transform = `scale(${scale})`;
 browserBox.style.opacity = 0;
 browserBox.style.transform = 'scale(0.9)';
 }
-
-const slowSpeed = scrollY * 0.28;
-parallaxImage.style.transform = `translateY(-${slowSpeed}px)`;
 });
 </script>
 
