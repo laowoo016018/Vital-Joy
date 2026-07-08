@@ -28,7 +28,6 @@ color:#333;
 line-height:1.8;
 }
 
-/* ===== 页面背景图：修复拉伸问题 ===== */
 .page-bg{
 width:100%;
 min-height:100vh;
@@ -42,7 +41,6 @@ position:relative;
 z-index:1;
 }
 
-/* 首屏浏览器相框容器 */
 .browser-frame-wrap{
 width:100%;
 min-height:100vh;
@@ -64,7 +62,6 @@ position:relative;
 transition:opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 浏览器顶部栏 */
 .browser-header{
 background:#ffffff;
 padding:12px 16px;
@@ -73,7 +70,6 @@ align-items:center;
 gap:10px;
 }
 
-/* 四颗彩色圆点：蓝、绿、紫、黄 */
 .dot{
 width:12px;
 height:12px;
@@ -90,7 +86,6 @@ font-size:13px;
 color:#777;
 }
 
-/* 窗口内横幅区域 */
 .top-banner{
 width:100%;
 height:70vh;
@@ -146,7 +141,6 @@ transition:0.2s;
 opacity:0.85;
 }
 
-/* ===== 下方内容区 ===== */
 .page-content{
 position:relative;
 z-index:3;
@@ -226,7 +220,6 @@ backdrop-filter:blur(8px);
 -webkit-backdrop-filter:blur(8px);
 }
 
-/* 联系方式链接样式 */
 .contact-card a{
 color:#4b3828;
 text-decoration:none;
@@ -246,15 +239,31 @@ text-align:center;
 padding:25px;
 }
 
+.scroll-item{
+opacity:0;
+transition:all 0.7s ease-out;
+}
+.from-left{
+transform:translateX(-80px);
+}
+.from-right{
+transform:translateX(80px);
+}
+.from-top{
+transform:translateY(60px);
+}
+.scroll-item.active{
+opacity:1;
+transform:translate(0,0);
+}
+
 @media(max-width:768px){
 .browser-frame-wrap{
 padding:20px 10px;
 }
-
 .page-content{
 padding:30px 20px;
 }
-
 .product-card{
 padding:20px;
 }
@@ -266,10 +275,8 @@ padding:20px;
 
 <body>
 
-<!-- 【背景图：顶部到底部完整显示，不裁切主体猫咪】 -->
 <div class="page-bg">
 
-    <!-- 浏览器窗口首屏 -->
     <div class="browser-frame-wrap">
         <div class="browser-frame" id="browserBox">
             <div class="browser-header">
@@ -291,42 +298,34 @@ padding:20px;
         </div>
     </div>
 
-    <!-- 下方内容区 -->
     <div class="page-content">
 
-        <section>
+        <section class="scroll-item from-left">
             <h2>为什么选择我们</h2>
             <div class="cards">
-
                 <div class="card">
                     <h3>🌱 天然豆腐</h3>
                     <p>采用植物纤维制作，环保又安心。</p>
                 </div>
-
                 <div class="card">
                     <h3>⚡ 快速结团</h3>
                     <p>快速吸收，减少碎团。</p>
                 </div>
-
                 <div class="card">
                     <h3>🌬️ 低粉尘</h3>
                     <p>减少粉尘飞扬，保护猫咪呼吸。</p>
                 </div>
-
                 <div class="card">
                     <h3>✨ 强效除臭</h3>
                     <p>帮助保持猫砂盆清新。</p>
                 </div>
-
             </div>
         </section>
 
-        <section>
+        <section class="scroll-item from-right">
             <h2>产品介绍</h2>
             <div class="product-card">
-
                 <img src="images/product.jpg" alt="Product">
-
                 <div>
                     <h3>Tofu Cat Litter</h3>
                     <p>重量：6L</p>
@@ -337,24 +336,20 @@ padding:20px;
                     <br>🐱 宠物寄宿中心
                     </p>
                 </div>
-
             </div>
         </section>
 
-        <section>
+        <section class="scroll-item from-top">
             <h2>产品细节</h2>
             <div class="product-card">
-
                 <img src="images/detail.jpg" alt="Detail">
-
                 <div>
                     <p>天然豆腐原料<br><br>快速结团<br><br>低粉尘设计<br><br>方便清理</p>
                 </div>
-
             </div>
         </section>
 
-        <section>
+        <section class="scroll-item from-left">
             <h2>联系我们</h2>
             <div class="contact-card">
                 <a href="https://wa.me/601111099372" target="_blank">WhatsApp</a>｜
@@ -379,7 +374,6 @@ window.addEventListener('scroll', () => {
 const scrollY = window.scrollY;
 const boxHeight = browserBox.offsetHeight;
 
-// 浏览器窗口滚动淡出缩小
 if(scrollY < boxHeight){
 let opacity = 1 - (scrollY / boxHeight) * 1.2;
 let scale = 1 - (scrollY / boxHeight) * 0.05;
@@ -390,6 +384,27 @@ browserBox.style.opacity = 0;
 browserBox.style.transform = 'scale(0.9)';
 }
 });
+
+const scrollItems = document.querySelectorAll('.scroll-item');
+// 倒序排列，实现：往上滚动时，下面的区块先消失，上面的后消失
+const itemsReverse = Array.from(scrollItems).reverse();
+
+function animateScroll(){
+    scrollItems.forEach(item=>{
+        const rect = item.getBoundingClientRect();
+        const enter = window.innerHeight * 0.85;
+        const leave = -100;
+
+        if(rect.top < enter && rect.bottom > leave){
+            item.classList.add('active');
+        }else{
+            item.classList.remove('active');
+        }
+    })
+}
+
+window.addEventListener('scroll',animateScroll);
+window.addEventListener('load',animateScroll);
 </script>
 
 </body>
