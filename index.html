@@ -80,11 +80,14 @@ border-radius:50%;
 .dot3{background:#9C27B0;}
 .dot4{background:#FBBC05;}
 
-/* 浏览器标题栏图片样式 */
+/* 浏览器标题栏文字Logo 透明强化 */
 .browser-header-logo{
-height:22px; /* 控制标题文字高度，适配浏览器栏 */
+height:22px;
 margin-left:12px;
 object-fit:contain;
+background:transparent !important;
+border:none !important;
+outline:none !important;
 }
 
 .top-banner{
@@ -114,11 +117,14 @@ left:35px;
 z-index:2;
 }
 
-/* 横幅顶部Logo */
+/* Banner顶部组合Logo 透明强化 */
 .banner-top-logo{
 height:60px;
 margin-bottom:20px;
 object-fit:contain;
+background:transparent !important;
+border:none !important;
+outline:none !important;
 }
 
 .top-banner h1{
@@ -178,7 +184,8 @@ gap:20px;
 background:rgba(255,255,255,0.85);
 padding:25px;
 border-radius:15px;
-text-align:left;box-shadow:0 2px 12px rgba(0,0,0,0.08);
+text-align:left;
+box-shadow:0 2px 12px rgba(0,0,0,0.08);
 backdrop-filter:blur(8px);
 -webkit-backdrop-filter:blur(8px);
 }
@@ -291,14 +298,14 @@ padding:20px;
                 <span class="dot dot2"></span>
                 <span class="dot dot3"></span>
                 <span class="dot dot4"></span>
-                <!-- ========== 改动1：把文字换成品牌文字图片 ========== -->
+                <!-- 顶部文字Logo -->
                 <img class="browser-header-logo" src="images/brand-text.png" alt="Vital Joy">
             </div>
 
             <div class="top-banner">
                 <div class="banner-overlay"></div>
                 <div class="banner-content">
-                    <!-- ========== 改动2：在大标题上方插入品牌Logo图片 ========== -->
+                    <!-- Banner主Logo -->
                     <img class="banner-top-logo" src="images/brand-logo.png" alt="Vital Joy Logo">
                     <h1>VITAL JOY</h1>
                     <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
@@ -396,7 +403,6 @@ browserBox.style.transform = 'scale(0.9)';
 });
 
 const scrollItems = document.querySelectorAll('.scroll-item');
-const itemsReverse = Array.from(scrollItems).reverse();
 
 function animateScroll(){
     scrollItems.forEach(item=>{
