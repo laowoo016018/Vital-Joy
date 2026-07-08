@@ -80,17 +80,10 @@ border-radius:50%;
 .dot3{background:#9C27B0;}
 .dot4{background:#FBBC05;}
 
-/* ========== 修正：锁定图片尺寸，禁止横向拉伸溢出 ========== */
-.browser-header-logo{
-height:22px;
-max-width:200px;  /* 限制最大宽度，不会横向撑爆 */
-width:auto;
+.browser-header-text{
 margin-left:12px;
-object-fit:contain;
-background:transparent !important;
-border:none !important;
-outline:none !important;
-display:block;
+font-size:13px;
+color:#777;
 }
 
 .top-banner{
@@ -118,19 +111,6 @@ position:absolute;
 bottom:40px;
 left:35px;
 z-index:2;
-}
-
-/* ========== 修正：限制Banner Logo最大宽度 ========== */
-.banner-top-logo{
-height:60px;
-max-width:320px;  /* 限制最大宽度，原图再大也不会溢出 */
-width:auto;
-margin-bottom:20px;
-object-fit:contain;
-background:transparent !important;
-border:none !important;
-outline:none !important;
-display:block;
 }
 
 .top-banner h1{
@@ -207,7 +187,7 @@ gap:30px;
 align-items:center;
 flex-wrap:wrap;
 justify-content:flex-start;
-background:rgba(255,255,0.85);
+background:rgba(255,255,255,0.85);
 padding:30px;
 border-radius:20px;
 box-shadow:0 2px 12px rgba(0,0,0,0.08);
@@ -304,15 +284,12 @@ padding:20px;
                 <span class="dot dot2"></span>
                 <span class="dot dot3"></span>
                 <span class="dot dot4"></span>
-                <!-- 顶部文字Logo -->
-                <img class="browser-header-logo" src="images/brand-text.png" alt="Vital Joy">
+                <div class="browser-header-text">Vital Joy</div>
             </div>
 
             <div class="top-banner">
                 <div class="banner-overlay"></div>
                 <div class="banner-content">
-                    <!-- Banner主Logo -->
-                    <img class="banner-top-logo" src="images/brand-logo.png" alt="Vital Joy Logo">
                     <h1>VITAL JOY</h1>
                     <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
                     <a class="button" href="#">了解更多</a>
@@ -409,6 +386,8 @@ browserBox.style.transform = 'scale(0.9)';
 });
 
 const scrollItems = document.querySelectorAll('.scroll-item');
+// 倒序排列，实现：往上滚动时，下面的区块先消失，上面的后消失
+const itemsReverse = Array.from(scrollItems).reverse();
 
 function animateScroll(){
     scrollItems.forEach(item=>{
