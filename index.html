@@ -80,14 +80,17 @@ border-radius:50%;
 .dot3{background:#9C27B0;}
 .dot4{background:#FBBC05;}
 
-/* 浏览器标题栏文字Logo 透明强化 */
+/* ========== 修正：锁定图片尺寸，禁止横向拉伸溢出 ========== */
 .browser-header-logo{
 height:22px;
+max-width:200px;  /* 限制最大宽度，不会横向撑爆 */
+width:auto;
 margin-left:12px;
 object-fit:contain;
 background:transparent !important;
 border:none !important;
 outline:none !important;
+display:block;
 }
 
 .top-banner{
@@ -117,14 +120,17 @@ left:35px;
 z-index:2;
 }
 
-/* Banner顶部组合Logo 透明强化 */
+/* ========== 修正：限制Banner Logo最大宽度 ========== */
 .banner-top-logo{
 height:60px;
+max-width:320px;  /* 限制最大宽度，原图再大也不会溢出 */
+width:auto;
 margin-bottom:20px;
 object-fit:contain;
 background:transparent !important;
 border:none !important;
 outline:none !important;
+display:block;
 }
 
 .top-banner h1{
@@ -201,7 +207,7 @@ gap:30px;
 align-items:center;
 flex-wrap:wrap;
 justify-content:flex-start;
-background:rgba(255,255,255,0.85);
+background:rgba(255,255,0.85);
 padding:30px;
 border-radius:20px;
 box-shadow:0 2px 12px rgba(0,0,0,0.08);
