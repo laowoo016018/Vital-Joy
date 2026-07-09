@@ -80,19 +80,14 @@ border-radius:50%;
 .dot3{background:#9C27B0;}
 .dot4{background:#FBBC05;}
 
-.browser-header-text{
+/* 浏览器标题栏文字Logo 透明强化 */
+.browser-header-logo{
+height:22px;
 margin-left:12px;
-font-size:13px;
-color:#777;
-}
-
-/* 左上角品牌名文字版 */
-.brand-name-inline{
-margin-left:12px;
-font-size:13px;
-color:#222;
-font-weight:bold;
-letter-spacing:0.5px;
+object-fit:contain;
+background:transparent !important;
+border:none !important;
+outline:none !important;
 }
 
 .top-banner{
@@ -122,10 +117,10 @@ left:35px;
 z-index:2;
 }
 
-/* Banner 顶部 Logo，透明无白底 */
+/* Banner顶部组合Logo 透明强化 */
 .banner-top-logo{
-height:64px;
-margin-bottom:18px;
+height:60px;
+margin-bottom:20px;
 object-fit:contain;
 background:transparent !important;
 border:none !important;
@@ -303,18 +298,15 @@ padding:20px;
                 <span class="dot dot2"></span>
                 <span class="dot dot3"></span>
                 <span class="dot dot4"></span>
-
-                <!-- 左上角品牌名，先用文字显示，避免图片白底 -->
-                <span class="brand-name-inline">VitalJoy</span>
+                <!-- 顶部文字Logo -->
+                <img class="browser-header-logo" src="images/brand-text.png" alt="Vital Joy">
             </div>
 
             <div class="top-banner">
                 <div class="banner-overlay"></div>
                 <div class="banner-content">
-
-                    <!-- 这里放 Banner 上方 Logo，你之后再替换成透明 PNG -->
-                    <img class="banner-top-logo" src="https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9r32edv7i/31b010f0-6c1a-4a0c-9d69-17c448a6b34c.png~tplv-a9r32edv7i-image.png?rk3s=8e22449b&x-expires=1744360055&x-signature=KcZ%2F%2FgQa%2Fz7Q%2Fm9FkB8hK%2BcJ9gU%3D" alt="Vital Joy Logo">
-
+                    <!-- Banner主Logo -->
+                    <img class="banner-top-logo" src="images/brand-logo.png" alt="Vital Joy Logo">
                     <h1>VITAL JOY</h1>
                     <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
                     <a class="button" href="#">了解更多</a>
