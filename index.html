@@ -80,14 +80,14 @@ border-radius:50%;
 .dot3{background:#9C27B0;}
 .dot4{background:#FBBC05;}
 
-/* 浏览器标题栏文字Logo 透明强化 */
+/* 浏览器标题栏图片样式【修复】 */
 .browser-header-logo{
 height:22px;
+width:auto;
+max-width:240px;
 margin-left:12px;
 object-fit:contain;
-background:transparent !important;
-border:none !important;
-outline:none !important;
+display:block;
 }
 
 .top-banner{
@@ -117,14 +117,14 @@ left:35px;
 z-index:2;
 }
 
-/* Banner顶部组合Logo 透明强化 */
+/* 横幅顶部Logo【修复】 */
 .banner-top-logo{
 height:60px;
+width:auto;
+max-width:360px;
 margin-bottom:20px;
 object-fit:contain;
-background:transparent !important;
-border:none !important;
-outline:none !important;
+display:block;
 }
 
 .top-banner h1{
@@ -298,14 +298,12 @@ padding:20px;
                 <span class="dot dot2"></span>
                 <span class="dot dot3"></span>
                 <span class="dot dot4"></span>
-                <!-- 顶部文字Logo -->
                 <img class="browser-header-logo" src="images/brand-text.png" alt="Vital Joy">
             </div>
 
             <div class="top-banner">
                 <div class="banner-overlay"></div>
                 <div class="banner-content">
-                    <!-- Banner主Logo -->
                     <img class="banner-top-logo" src="images/brand-logo.png" alt="Vital Joy Logo">
                     <h1>VITAL JOY</h1>
                     <p>天然豆腐猫砂<br>快速结团 · 强力除臭 · 低粉尘</p>
